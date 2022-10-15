@@ -1,0 +1,37 @@
+theme = "tokyonight_storm"
+
+[editor]
+true-color = true
+color-modes = true
+cursorline = true
+
+[editor.statusline]
+left = ["mode", "separator", "file-type", "spinner"]
+center = ["file-name", "diagnostics"]
+right = ["selections", "separator", "position", "separator", "position-percentage"]
+separator = ""
+
+[editor.cursor-shape]
+insert = "underline"
+
+[editor.indent-guides]
+render = true
+character = ""
+
+[editor.whitespace.render]
+newline = "all"
+tab = "all"
+
+[editor.whitespace.characters]
+tab = "壟"
+
+[keys.normal]
+j = "move_line_up"
+k = "move_line_down"
+"C-w" = { j = "jump_view_up", k = "jump_view_down", J = "swap_view_up", K = "swap_view_down" }
+X = "extend_line_above"
+"A-x" = ["extend_line_above", "extend_line_below"]
+
+[keys.select]
+j = "move_line_up"
+k = "move_line_down"
