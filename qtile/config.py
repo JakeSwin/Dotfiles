@@ -27,7 +27,7 @@
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -72,7 +72,9 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Spawn a rofi run window"),
+    Key([mod], "f", lazy.group['scratchpad'].dropdown_toggle('term'), desc="Terminal Scratchpad"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -101,8 +103,16 @@ for i in groups:
         ]
     )
 
+groups += [ 
+    ScratchPad("scratchpad", 
+        [
+            DropDown("term", "kitty broot", width=0.8, height=0.8, x=0.10, y=0.10)
+        ]
+    )
+]
+
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4, margin=8),
+    layout.Columns(border_focus_stack=["#3c4cba", "#3c4cba"], border_width=4, margin=8),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -118,37 +128,34 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
-    padding=3,
+    font="Cousine Nerd Font Mono",
+    fontsize=14,
+    padding=5,
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.CurrentLayout(),
+                widget.CurrentLayout(background="23019E"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="23019E"),
+                widget.Spacer(length=bar.STRETCH),
                 widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                widget.Spacer(length=bar.STRETCH),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="23019E"),
+                widget.Net(prefix='M',background="23019E"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="EBD302",background="23019E"),
+                widget.BatteryIcon(background="EBD302"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="23019E",background="EBD302"),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", background="23019E"),
             ],
-            24,
+            32,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            opacity=0.7
         ),
     ),
 ]
