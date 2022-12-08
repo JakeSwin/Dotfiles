@@ -186,7 +186,7 @@
 	    nix
         ]
         # execution: "$EDITOR +{line} {file}"
-        execution: "kitty --detach hx {file}"
+        execution: "alacritty -e hx {file} &"
         working_dir: "{root}"
         leave_broot: false
     }

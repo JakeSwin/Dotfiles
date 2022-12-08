@@ -32,7 +32,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "alacritty"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -106,7 +106,7 @@ for i in groups:
 groups += [ 
     ScratchPad("scratchpad", 
         [
-            DropDown("term", "kitty broot", width=0.8, height=0.8, x=0.10, y=0.10)
+            DropDown("term", "alacritty -e broot", width=0.8, height=0.8, x=0.10, y=0.10)
         ]
     )
 ]
@@ -138,19 +138,19 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(background="23019E"),
-                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="23019E"),
+                widget.CurrentLayout(background="fb4934"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="fb4934"),
                 widget.Spacer(length=bar.STRETCH),
                 widget.GroupBox(),
                 widget.Spacer(length=bar.STRETCH),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
-                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="23019E"),
-                widget.Net(prefix='M',background="23019E"),
-                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="EBD302",background="23019E"),
-                widget.BatteryIcon(background="EBD302"),
-                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="23019E",background="EBD302"),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p", background="23019E"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="fb4934"),
+                widget.Net(prefix='M',background="fb4934"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="b8bb26",background="fb4934"),
+                widget.BatteryIcon(background="b8bb26"),
+                widget.TextBox(fmt="",fontsize=35,padding=0,foreground="fb4934",background="b8bb26"),
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p", background="fb4934"),
             ],
             32,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders

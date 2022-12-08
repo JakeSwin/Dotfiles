@@ -2,3 +2,4 @@
 [Default Applications]
 text/x-python=nvim.desktop
 application/toml=nvim.desktop
+application/toml=nvim.desktop

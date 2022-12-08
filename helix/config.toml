@@ -1,4 +1,4 @@
-theme = "tokyonight_storm"
+theme = "gruvbox"
 
 [editor]
 true-color = true
@@ -26,12 +26,5 @@ tab = "all"
 tab = "壟"
 
 [keys.normal]
-j = "move_line_up"
-k = "move_line_down"
-"C-w" = { j = "jump_view_up", k = "jump_view_down", J = "swap_view_up", K = "swap_view_down" }
 X = "extend_line_above"
 "A-x" = ["extend_line_above", "extend_line_below"]
-
-[keys.select]
-j = "move_line_up"
-k = "move_line_down"

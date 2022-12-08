@@ -1,1 +1,9 @@
-/nix/store/a3z6zdhiv16bpgb1wsyixv403vqmgn29-home-manager-files/.config/fish/config.fish
+if status is-interactive
+
+end
+
+alias ls="exa -lhra -s modified --no-user --git --group-directories-first"
+
+set -U fish_greeting
+
+zoxide init fish | source
